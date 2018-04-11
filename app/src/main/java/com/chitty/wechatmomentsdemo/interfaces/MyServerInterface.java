@@ -14,11 +14,11 @@ public interface MyServerInterface {
 
     @Headers("Content-Type: application/json")
     @GET(UrlHolder.BASE_URL + "user/jsmith")
-    Call<ResponseBody> jsmith();
+    Call<ResponseBody> getJsmith();
 
 
     @Headers("Content-Type: application/json")
     @GET(UrlHolder.BASE_URL + "user/jsmith/tweets")
-    Call<ResponseBody> tweets();
+    Call<ResponseBody> getTweets();
 
 }

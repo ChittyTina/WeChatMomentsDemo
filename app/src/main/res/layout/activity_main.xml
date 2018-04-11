@@ -57,15 +57,11 @@
 
     </RelativeLayout>
 
-    <com.chitty.wechatmomentsdemo.views.SuperSwipeRefreshLayout
-        android:id="@+id/mSwipeRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/mRlTitle"
-        >
-        <android.support.v4.widget.NestedScrollView
+        <com.chitty.wechatmomentsdemo.views.PullToRefreshLayout
+            android:id="@+id/mPtrLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/mRlTitle"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -83,9 +79,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     />
             </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
-    </com.chitty.wechatmomentsdemo.views.SuperSwipeRefreshLayout>
+        </com.chitty.wechatmomentsdemo.views.PullToRefreshLayout>
 
 </RelativeLayout>

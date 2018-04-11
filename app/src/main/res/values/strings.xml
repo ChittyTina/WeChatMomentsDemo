@@ -7,4 +7,6 @@
     <string name="network_unable">出了点问题，请重试</string>
     <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
     <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
+    <string name="go_back">返回</string>
+    <string name="open_camera">弹框</string>
 </resources>
