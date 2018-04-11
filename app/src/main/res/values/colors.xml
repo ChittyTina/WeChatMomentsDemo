@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="black">#302d2d</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#999999</color>
+    <color name="gray_white">#D6D6D6</color>
+    <color name="progressbar_start">#C6C6C6</color>
+    <color name="progressbar_center">#848484</color>
+    <color name="progressbar_end">#848442</color>
 </resources>

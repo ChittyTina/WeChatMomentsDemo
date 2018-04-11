@@ -1,16 +1,28 @@
 package com.chitty.wechatmomentsdemo.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Window;
-
 import com.chitty.wechatmomentsdemo.R;
+import com.chitty.wechatmomentsdemo.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void setAllClick() {
+
+    }
+
+    @Override
+    protected void process() {
+
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void loadView() {
         setContentView(R.layout.activity_main);
     }
 }

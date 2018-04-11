@@ -1,18 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.chitty.wechatmomentsdemo.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/mRlTitle"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/black"
+        >
+        <RelativeLayout
+            android:id="@+id/mRlBack"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            >
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@mipmap/back"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                />
+        </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/moments"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/mRlBack"
+            android:layout_centerVertical="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/mRlCamera"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            >
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <com.chitty.wechatmomentsdemo.views.SuperSwipeRefreshLayout
+        android:id="@+id/mSwipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mRlTitle"
+        >
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <com.chitty.wechatmomentsdemo.views.XRecyclerView
+                    android:id="@+id/mRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+                <com.chitty.wechatmomentsdemo.views.EmptyLayout
+                    android:id="@+id/mErrorLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    />
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.chitty.wechatmomentsdemo.views.SuperSwipeRefreshLayout>
+
+</RelativeLayout>
