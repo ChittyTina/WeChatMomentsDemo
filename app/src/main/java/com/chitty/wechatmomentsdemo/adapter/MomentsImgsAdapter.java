@@ -36,7 +36,7 @@ public class MomentsImgsAdapter extends BaseAdapterHelper<MomentsModel.ImagesBea
         }
 
         Glide.with(mContext).load(mList.get(position).getUrl())
-                .placeholder(R.mipmap.pig)
+                .placeholder(R.mipmap.img_default)
                 .into(mHolder.mIvImg);
 
 

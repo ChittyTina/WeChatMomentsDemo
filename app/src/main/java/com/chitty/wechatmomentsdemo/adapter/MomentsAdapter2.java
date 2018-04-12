@@ -48,7 +48,7 @@ public class MomentsAdapter2 extends RecyclerViewAdapterHelper<MomentsModel> {
             return holder;
 
         } else if (viewType == IS_NORMAL) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view2, parent, false);
             holder = new ViewHolder(view, IS_NORMAL);
             return holder;
         }

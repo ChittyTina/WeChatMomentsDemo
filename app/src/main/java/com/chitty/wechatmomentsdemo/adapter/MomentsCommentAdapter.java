@@ -34,7 +34,7 @@ public class MomentsCommentAdapter extends BaseAdapterHelper<MomentsModel.Commen
             mHolder = (MyViewHolder) convertView.getTag();
         }
 
-        mHolder.mTvComment.setText(mList.get(position).getSender().getNick()+":"+mList.get(position).getContent());
+        mHolder.mTvComment.setText(mList.get(position).getSender().getNick()+": "+mList.get(position).getContent());
         return convertView;
     }
 

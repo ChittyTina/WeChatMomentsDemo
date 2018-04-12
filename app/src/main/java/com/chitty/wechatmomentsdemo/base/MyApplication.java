@@ -6,18 +6,22 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.integration.okhttp.OkHttpUrlLoader;
+//import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.chitty.wechatmomentsdemo.config.UrlHolder;
 import com.chitty.wechatmomentsdemo.interfaces.MyServerInterface;
 import com.chitty.wechatmomentsdemo.utils.ACache;
+import com.chitty.wechatmomentsdemo.utils.HttpsUtils;
 import com.chitty.wechatmomentsdemo.utils.LogUtils;
 import com.chitty.wechatmomentsdemo.utils.OkHttp3Utils;
 import com.chitty.wechatmomentsdemo.utils.OkHttpClientHelper;
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Stack;
 
@@ -70,6 +74,37 @@ public final class MyApplication extends Application {
         gson = new Gson();
         //初始化Retrofit
         initRetrofit();
+        initImageLoader();
+
+//        initGlide();
+
+//        try {
+////            InputStream[] InputStream = new InputStream[1];
+////            InputStream input = this
+////                    .getAssets().open("CA_.cer");
+////            InputStream[0] = input;
+//
+//            //设置 Glide 网络访问方式 ，让 Glide 能用 HTTPS
+//            Glide.get(this).register(GlideUrl.class, InputStream.class,
+//                    new OkHttpUrlLoader.Factory(HttpsUtils.getOkHttpClient(null)));// InputStream
+//
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
+    }
+
+//    private void initGlide() {
+//        //设置 Glide 网络访问方式 ，让 Glide 能用 HTTPS
+//        Glide.get(this).register(GlideUrl.class, InputStream.class,
+//                new OkHttpUrlLoader.Factory(OkHttpClientHelper.getOkHttpSingletonInstance()));
+//    }
+
+    private void initImageLoader() {
+        ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
+        ImageLoader.getInstance().init(configuration);
 
     }
 
@@ -95,12 +130,6 @@ public final class MyApplication extends Application {
     public MyServerInterface getMyServerInterface() {
         return serverInterface;
     }
-
-//    private void initGlide() {
-//        //设置Glide网络访问方式
-//        Glide.get(this).register(GlideUrl.class, InputStream.class,
-//                new OkHttpUrlLoader.Factory(OkHttpClientHelper.getOkHttpSingletonInstance()));
-//    }
 
     public static MyApplication getInstance() {
         if (singleton == null) {

@@ -18,6 +18,10 @@
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait"
         >
+        <meta-data
+            android:name="com.chitty.wechatmomentsdemo.https.SimpleGlideModule"
+            android:value="GlideModule" />
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

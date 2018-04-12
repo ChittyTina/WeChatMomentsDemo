@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         mListView.addHeaderView(headView);
 
         momentsAdapter = new MomentsAdapter(MainActivity.this, momentsModels);
-
+        mListView.setAdapter(momentsAdapter);
     }
 
     @Override
@@ -231,7 +231,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 JSONObject jsonObject = new JSONObject(profileJson);
                 if (jsonObject.has("profile-image")) {
                     Glide.with(mContext).load(jsonObject.optString("profile-image"))
-                            .placeholder(R.mipmap.head_bg)
+                            .placeholder(R.mipmap.img_default)
                             .into(mIvHeadBg);
                 }
 
@@ -299,23 +299,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                             avatar = sender.optString("avatar");
 
                         }
+
+                        MomentsModel momentsModel = new MomentsModel();
+                        MomentsModel.SenderBean senderBean = new MomentsModel.SenderBean();
+                        senderBean.setAvatar(avatar);
+                        senderBean.setNick(nick);
+                        momentsModel.setSender(senderBean);
+                        momentsModel.setContent(content);
+                        momentsModel.setComments(commentsBeanList);
+                        momentsModel.setImages(imagesBeanList);
+                        momentsModels.add(momentsModel);
                     }
 
-                    MomentsModel momentsModel = new MomentsModel();
-                    MomentsModel.SenderBean senderBean = new MomentsModel.SenderBean();
-                    senderBean.setAvatar(avatar);
-                    senderBean.setNick(nick);
-                    momentsModel.setSender(senderBean);
-                    momentsModel.setContent(content);
-                    momentsModel.setComments(commentsBeanList);
-                    momentsModel.setImages(imagesBeanList);
-                    momentsModels.add(momentsModel);
                 }
 
                 if (momentsModels != null && momentsModels.size() > 0){
                     mErrorLayout.setVisibility(View.GONE);
                 }
-                mListView.setAdapter(momentsAdapter);
+                momentsAdapter.notifyDataSetChanged();
 
             } catch (JSONException e) {
                 e.printStackTrace();
