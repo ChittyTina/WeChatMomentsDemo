@@ -9,8 +9,7 @@
             android:scaleType="fitXY"
             android:background="@mipmap/head_bg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
+            android:layout_height="270dp"
             />
         <ImageView
             android:id="@+id/mIvAvatar"
@@ -32,6 +31,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_toLeftOf="@+id/mIvAvatar"
-            android:layout_marginTop="260dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
             />
 </RelativeLayout>

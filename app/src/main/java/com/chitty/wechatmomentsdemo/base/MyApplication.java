@@ -23,6 +23,7 @@ import java.util.Stack;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
@@ -42,8 +43,6 @@ public final class MyApplication extends Application {
     private Context mContext = this;
     private MyServerInterface serverInterface = null;
     private RefWatcher mRefWatcher;
-    private String userphone;
-
 
     public static ACache getACache() {
         return mACache;
@@ -60,7 +59,6 @@ public final class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-        userphone = "";
         super.onCreate();
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -72,21 +70,12 @@ public final class MyApplication extends Application {
         gson = new Gson();
         //初始化Retrofit
         initRetrofit();
-        initGlide();
 
     }
 
     public static RefWatcher getRefWatcher(Context context) {
         MyApplication application = (MyApplication) context.getApplicationContext();
         return application.mRefWatcher;
-    }
-
-    public String getUserphone() {
-        return userphone;
-    }
-
-    public void setUserphone(String userphone) {
-        this.userphone = userphone;
     }
 
     private void initRetrofit() {
@@ -96,7 +85,8 @@ public final class MyApplication extends Application {
         retrofit = new Retrofit.Builder()
                 .baseUrl(UrlHolder.BASE_URL)
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create()) // gson
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//添加rxjava转换器
                 .build();
 
         serverInterface = retrofit.create(MyServerInterface.class);
@@ -106,11 +96,11 @@ public final class MyApplication extends Application {
         return serverInterface;
     }
 
-    private void initGlide() {
-        //设置Glide网络访问方式
-        Glide.get(this).register(GlideUrl.class, InputStream.class,
-                new OkHttpUrlLoader.Factory(OkHttpClientHelper.getOkHttpSingletonInstance()));
-    }
+//    private void initGlide() {
+//        //设置Glide网络访问方式
+//        Glide.get(this).register(GlideUrl.class, InputStream.class,
+//                new OkHttpUrlLoader.Factory(OkHttpClientHelper.getOkHttpSingletonInstance()));
+//    }
 
     public static MyApplication getInstance() {
         if (singleton == null) {

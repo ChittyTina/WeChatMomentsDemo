@@ -33,7 +33,6 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 
 	public static final int EMPTY_PROMPT = 6;
 	public static final int NO_NETWORK = 7;
-    public static final int EMPTY_PROMPT_INVITE = 8;
 
 	private ProgressBar animProgress;
 	private boolean clickEnable = true;
@@ -149,10 +148,10 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 				mErrorState = NETWORK_ERROR;
 				if (isConnectivity(context)) {
 					tv.setText(R.string.error_view_load_error_click_to_refresh);
-					img.setBackgroundResource(R.mipmap.pagefailed_bg);// pagefailed_bg
+					img.setBackgroundResource(R.mipmap.pagefailed_bg);
 				} else {
 					tv.setText(R.string.error_view_network_error_click_to_refresh);
-					img.setBackgroundResource(R.mipmap.page_icon_network);// page_icon_network
+					img.setBackgroundResource(R.mipmap.page_icon_network);
 				}
 				img.setVisibility(View.VISIBLE);
 				animProgress.setVisibility(View.GONE);
@@ -167,7 +166,7 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 				break;
 			case NODATA:
 				mErrorState = NODATA;
-				img.setBackgroundResource(R.mipmap.page_icon_empty);// page_icon_empty
+				img.setBackgroundResource(R.mipmap.page_icon_empty);
 				img.setVisibility(View.VISIBLE);
 				animProgress.setVisibility(View.GONE);
 				setTvNoDataContent();
@@ -178,14 +177,13 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 				break;
 			case NODATA_ENABLE_CLICK:
 				mErrorState = NODATA_ENABLE_CLICK;
-				img.setBackgroundResource(R.mipmap.page_icon_empty);// page_icon_empty
+				img.setBackgroundResource(R.mipmap.page_icon_empty);
 				img.setVisibility(View.VISIBLE);
 				animProgress.setVisibility(View.GONE);
 				setTvNoDataContent();
 				clickEnable = true;
 				break;
 			case EMPTY_PROMPT:// 自定义提示文案
-//				mErrorState = EMPTY_PROMPT;
 				img.setVisibility(View.GONE);
 				animProgress.setVisibility(View.GONE);
 				tv.setText(strNoDataContent);
@@ -196,7 +194,6 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 				clickEnable = false;
 				break;
 			case NO_NETWORK:// 无网络
-//				mErrorState = NO_NETWORK;
 				img.setVisibility(View.GONE);
 				animProgress.setVisibility(View.GONE);
 				tv.setText(getResources().getString(R.string.network_unable));

@@ -1,10 +1,6 @@
 package com.chitty.wechatmomentsdemo.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
-
-//import com.egen.ua.BuildConfig;
-//import com.egen.ua.config.LoggingInterceptor;
 
 import com.chitty.wechatmomentsdemo.BuildConfig;
 
@@ -20,8 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class OkHttp3Utils {
     private static OkHttpClient okHttpClient = null;
-    private static final int DEFAULT_TIMEOUT = 30;// 20
-    private static Context mContext;
+    private static final int DEFAULT_TIMEOUT = 20;
 
     public  static OkHttpClient getOkHttpSingletonInstance() {
         if (okHttpClient == null) {
@@ -30,9 +25,9 @@ public class OkHttp3Utils {
                     okHttpClient = new OkHttpClient();
                     //设置合理的超时
                     OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder()
-                            .readTimeout(3, TimeUnit.SECONDS)
-                            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS) //设置连接超时 30秒
-                            .writeTimeout(3, TimeUnit.MINUTES)
+                            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                            .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                            .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                             .addInterceptor(new LoggingInterceptor())//添加请求拦截
                             .retryOnConnectionFailure(true);
 
@@ -55,30 +50,6 @@ public class OkHttp3Utils {
                     }
                     okHttpClient = httpBuilder
                             .protocols(Collections.singletonList(Protocol.HTTP_1_1))
-                            .build();
-                }
-            }
-        }
-        return okHttpClient;
-    }
-
-    public  static OkHttpClient getOkHttpSingletonInstance(Context context) {
-        if (context != null) {
-            mContext = context;
-        }
-        if (okHttpClient == null) {
-            synchronized (OkHttpClient.class) {
-                if (okHttpClient == null) {
-                    okHttpClient = new OkHttpClient();
-                    //设置合理的超时
-                    OkHttpClient.Builder httpBuilder=new OkHttpClient.Builder();
-                    okHttpClient = httpBuilder.readTimeout(3, TimeUnit.SECONDS)
-                            .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-                            .writeTimeout(3, TimeUnit.MINUTES) //设置超时
-//                            .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
-//                            .cookieJar(new CookieManger(context))
-                            .addInterceptor(new LoggingInterceptor())
-                            .retryOnConnectionFailure(true)
                             .build();
                 }
             }

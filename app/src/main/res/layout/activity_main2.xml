@@ -56,29 +56,30 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <com.chitty.wechatmomentsdemo.views.PullToRefreshLayout
+        <com.chitty.wechatmomentsdemo.views.PullToRefreshLayout
             android:id="@+id/mPtrLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/mRlTitle"
             >
-                <ListView
-                    android:id="@+id/mListView"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <com.chitty.wechatmomentsdemo.views.XRecyclerView
+                    android:id="@+id/mRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:listSelector="@color/white"
-                    android:divider="@null"
-                    android:dividerHeight="0dp"
-                    >
-                </ListView>
-
+                    android:scrollbars="none"
+                    />
+                <com.chitty.wechatmomentsdemo.views.EmptyLayout
+                    android:id="@+id/mErrorLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
         </com.chitty.wechatmomentsdemo.views.PullToRefreshLayout>
 
-    <com.chitty.wechatmomentsdemo.views.EmptyLayout
-        android:id="@+id/mErrorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/mRlTitle"
-        />
 </RelativeLayout>
