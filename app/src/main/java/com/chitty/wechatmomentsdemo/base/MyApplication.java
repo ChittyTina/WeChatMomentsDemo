@@ -6,22 +6,19 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.bumptech.glide.Glide;
-//import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.chitty.wechatmomentsdemo.config.UrlHolder;
+import com.chitty.wechatmomentsdemo.https.OkHttpUrlLoader;
 import com.chitty.wechatmomentsdemo.interfaces.MyServerInterface;
-import com.chitty.wechatmomentsdemo.utils.ACache;
 import com.chitty.wechatmomentsdemo.utils.HttpsUtils;
 import com.chitty.wechatmomentsdemo.utils.LogUtils;
 import com.chitty.wechatmomentsdemo.utils.OkHttp3Utils;
-import com.chitty.wechatmomentsdemo.utils.OkHttpClientHelper;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Stack;
 
@@ -41,16 +38,11 @@ public final class MyApplication extends Application {
     private static MyApplication singleton;
     private static Retrofit retrofit;
     private static Gson gson;
-    private static ACache mACache;
     private static Stack<Activity> activityStack;
 
     private Context mContext = this;
     private MyServerInterface serverInterface = null;
     private RefWatcher mRefWatcher;
-
-    public static ACache getACache() {
-        return mACache;
-    }
 
     public static Gson getGson() {
         return gson;
@@ -70,37 +62,21 @@ public final class MyApplication extends Application {
             return;
         }
         mRefWatcher = LeakCanary.install(this);
-        mACache=ACache.get(this);
         gson = new Gson();
         //初始化Retrofit
         initRetrofit();
         initImageLoader();
 
-//        initGlide();
-
-//        try {
-////            InputStream[] InputStream = new InputStream[1];
-////            InputStream input = this
-////                    .getAssets().open("CA_.cer");
-////            InputStream[0] = input;
-//
-//            //设置 Glide 网络访问方式 ，让 Glide 能用 HTTPS
-//            Glide.get(this).register(GlideUrl.class, InputStream.class,
-//                    new OkHttpUrlLoader.Factory(HttpsUtils.getOkHttpClient(null)));// InputStream
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
+        initGlide();
 
     }
 
-//    private void initGlide() {
-//        //设置 Glide 网络访问方式 ，让 Glide 能用 HTTPS
-//        Glide.get(this).register(GlideUrl.class, InputStream.class,
-//                new OkHttpUrlLoader.Factory(OkHttpClientHelper.getOkHttpSingletonInstance()));
-//    }
+    private void initGlide() {
+        //设置 Glide 网络访问方式 ，让 Glide 能用 HTTPS
+        Glide.get(this).register(GlideUrl.class, InputStream.class,
+                new OkHttpUrlLoader.Factory(HttpsUtils.getOkHttpClient()));// 参数：证书 InputStream
+
+    }
 
     private void initImageLoader() {
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
@@ -115,7 +91,7 @@ public final class MyApplication extends Application {
 
     private void initRetrofit() {
         OkHttpClient client = OkHttp3Utils.getOkHttpSingletonInstance();
-        LogUtils.i(TAG, "-- MyApplication --->initRetrofit: " + client.toString());
+        LogUtils.i(TAG, "--> initRetrofit: " + client.toString());
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(UrlHolder.BASE_URL)
@@ -146,7 +122,7 @@ public final class MyApplication extends Application {
             activityStack = new Stack<>();
         }
         activityStack.add(activity);
-        LogUtils.e(activity.getClass().getName(), "当前回退栈的Activity数量:" + activityStack.size());
+        LogUtils.e(activity.getClass().getName(), "--> 当前回退栈的Activity数量:" + activityStack.size());
     }
 
     /**
@@ -187,7 +163,7 @@ public final class MyApplication extends Application {
     public void finishAllActivity() {
         for (int i = 0, size = activityStack.size(); i < size; i++) {
             if (null != activityStack.get(i)) {
-                LogUtils.e("gnifeifeiing", "已结束：" + activityStack.get(i).getClass().getName());
+                LogUtils.e(TAG, "--> 已结束：" + activityStack.get(i).getClass().getName());
                 activityStack.get(i).finish();
             }
         }

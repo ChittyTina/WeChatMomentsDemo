@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MomentsModel {
 
-    private String profileimage;// TODO "profile-image"
+    private String profileimage;// "profile-image"
     private String avatar;
     private String nick;
     private String username;
@@ -17,7 +17,7 @@ public class MomentsModel {
     private SenderBean sender;
     private String error;
     private List<ImagesBean> images;
-    private String unknown_error;// TODO "unknown error"
+    private String unknown_error;// "unknown error"
     private List<CommentsBean> comments;
 
     public String getProfileimage() {

@@ -11,7 +11,7 @@ import com.chitty.wechatmomentsdemo.R;
 
 /**
  * Created by chitty on 2018/4/12.
- * 画 倒三角
+ * 画三角
  */
 public class DrawTriangleView extends View {
 

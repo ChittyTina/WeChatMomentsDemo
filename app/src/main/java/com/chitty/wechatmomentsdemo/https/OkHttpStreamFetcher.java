@@ -17,8 +17,7 @@ import okhttp3.ResponseBody;
 /**
  * Fetches an {@link InputStream} using the okhttp library.
  */
-public class OkHttpStreamFetcher implements DataFetcher<InputStream>
-{
+public class OkHttpStreamFetcher implements DataFetcher<InputStream> {
     private final OkHttpClient client;
     private final GlideUrl url;
     private InputStream stream;
@@ -30,8 +29,7 @@ public class OkHttpStreamFetcher implements DataFetcher<InputStream>
     }
 
     @Override
-    public InputStream loadData(Priority priority) throws Exception
-    {
+    public InputStream loadData(Priority priority) throws Exception {
         Request.Builder requestBuilder = new Request.Builder()
                 .url(url.toStringUrl());
 

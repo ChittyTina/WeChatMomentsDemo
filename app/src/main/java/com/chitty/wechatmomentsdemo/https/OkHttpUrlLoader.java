@@ -22,13 +22,11 @@ import okhttp3.OkHttpClient;
  * <p>当前版本： V1.0.0
  * <p>修订历史： (版本、修改时间、修改人、修改内容)
  */
-public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream>
-{
+public class OkHttpUrlLoader implements ModelLoader<GlideUrl, InputStream> {
     /**
      * The default factory for {@link OkHttpUrlLoader}s.
      */
-    public static class Factory implements ModelLoaderFactory<GlideUrl, InputStream>
-    {
+    public static class Factory implements ModelLoaderFactory<GlideUrl, InputStream> {
         private static volatile OkHttpClient internalClient;
         private OkHttpClient client;
 

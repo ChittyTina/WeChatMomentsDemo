@@ -1,9 +1,6 @@
 package com.chitty.wechatmomentsdemo.adapter;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.chitty.wechatmomentsdemo.R;
 import com.chitty.wechatmomentsdemo.base.BaseAdapterHelper;
 import com.chitty.wechatmomentsdemo.model.MomentsModel;
-import com.chitty.wechatmomentsdemo.utils.LogUtils;
-import com.chitty.wechatmomentsdemo.views.CustomGridView;
 import com.chitty.wechatmomentsdemo.views.CustomListView;
 import com.chitty.wechatmomentsdemo.views.DrawTriangleView;
-import com.chitty.wechatmomentsdemo.views.NineGridLayout;
 import com.chitty.wechatmomentsdemo.views.NineGridTestLayout;
 
 import java.util.ArrayList;
@@ -36,7 +27,6 @@ import java.util.List;
 public class MomentsAdapter extends BaseAdapterHelper<MomentsModel> {
 
     private static final String TAG = "MomentsAdapter";
-    private MomentsImgsAdapter momentsImgsAdapter = null;
     private MomentsCommentAdapter momentsCommentAdapter = null;
     private List<String> imgUrls = new ArrayList<>();
 
@@ -64,37 +54,9 @@ public class MomentsAdapter extends BaseAdapterHelper<MomentsModel> {
         }
 
         Glide.with(mContext).load(mList.get(position).getSender().getAvatar())
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        LogUtils.i(TAG, "e=" + e.getMessage());
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        return false;
-                    }
-                })
                 .placeholder(R.mipmap.avatar)
                 .centerCrop()
                 .into(mHolder.mIvSenderAvatar);
-
-//        if (mList.get(position).getImages() != null && mList.get(position).getImages().size() > 0){
-//            mHolder.mCgvImgs.setVisibility(View.VISIBLE);
-//            momentsImgsAdapter = new MomentsImgsAdapter(mContext,mList.get(position).getImages());
-//            mHolder.mCgvImgs.setAdapter(momentsImgsAdapter);
-//            if (mList.get(position).getImages().size() == 1){
-//                mHolder.mCgvImgs.setNumColumns(1);
-//            }else if (mList.get(position).getImages().size() == 2 || mList.get(position).getImages().size() == 4){
-//                mHolder.mCgvImgs.setNumColumns(2);
-//            }else {
-//                mHolder.mCgvImgs.setNumColumns(3);
-//            }
-//
-//        }else {
-//            mHolder.mCgvImgs.setVisibility(View.GONE);
-//        }
 
         imgUrls.clear();
         if (mList.get(position).getImages() != null && mList.get(position).getImages().size() > 0){
@@ -125,7 +87,6 @@ public class MomentsAdapter extends BaseAdapterHelper<MomentsModel> {
         return convertView;
     }
 
-    //  自定义View —— 画三角形
     private void drawTriangle(LinearLayout layout) {
         final DrawTriangleView view = new DrawTriangleView(mContext);
         view.setMinimumHeight(16);
@@ -136,9 +97,8 @@ public class MomentsAdapter extends BaseAdapterHelper<MomentsModel> {
     }
 
     class MyViewHolder {
-        private TextView mTvNick,mTvSenderNick,mTvContent;
-        private ImageView mIvHeadBg,mIvAvatar,mIvSenderAvatar;
-//        private CustomGridView mCgvImgs;
+        private TextView mTvSenderNick,mTvContent;
+        private ImageView mIvSenderAvatar;
         private CustomListView mClvComments;
         private NineGridTestLayout mNineGridLayout;
         private LinearLayout mLlTriangle;
@@ -147,11 +107,9 @@ public class MomentsAdapter extends BaseAdapterHelper<MomentsModel> {
             mIvSenderAvatar = (ImageView) itemView.findViewById(R.id.mIvSenderAvatar);
             mTvSenderNick = (TextView) itemView.findViewById(R.id.mTvSenderNick);
             mTvContent = (TextView) itemView.findViewById(R.id.mTvContent);
-//            mCgvImgs = (CustomGridView) itemView.findViewById(R.id.mCgvImgs);
             mClvComments = (CustomListView) itemView.findViewById(R.id.mClvComments);
             mNineGridLayout = (NineGridTestLayout) itemView.findViewById(R.id.mNineGridLayout);
             mLlTriangle = (LinearLayout) itemView.findViewById(R.id.mLlTriangle);
         }
     }
-
 }

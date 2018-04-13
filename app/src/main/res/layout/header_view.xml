@@ -7,7 +7,7 @@
         <ImageView
             android:id="@+id/mIvHeadBg"
             android:scaleType="fitXY"
-            android:background="@mipmap/head_bg"
+            android:background="@mipmap/img_default"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"

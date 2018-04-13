@@ -2,7 +2,7 @@ package com.chitty.wechatmomentsdemo.config;
 
 
 /**
- * Created by chitty on 2017/5/15.
+ * Created by chitty on 2018/4/11.
  */
 
 public class UrlHolder {

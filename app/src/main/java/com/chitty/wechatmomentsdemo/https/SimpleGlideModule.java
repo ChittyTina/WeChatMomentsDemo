@@ -31,17 +31,14 @@ import okhttp3.OkHttpClient;
  * {@link GlideModule}.
  * </p>
  */
-public class SimpleGlideModule implements GlideModule
-{
+public class SimpleGlideModule implements GlideModule {
     @Override
-    public void applyOptions(Context context, GlideBuilder builder)
-    {
+    public void applyOptions(Context context, GlideBuilder builder) {
         // Do nothing.
     }
 
     @Override
-    public void registerComponents(Context context, Glide glide)
-    {
+    public void registerComponents(Context context, Glide glide) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .sslSocketFactory(overlockCard().getSocketFactory())
                 .hostnameVerifier(new HostnameVerifier()
@@ -58,37 +55,30 @@ public class SimpleGlideModule implements GlideModule
     /**
      * 忽略所有https证书
      */
-    private SSLContext overlockCard()
-    {
-        final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager()
-        {
+    private SSLContext overlockCard() {
+        final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             @Override
             public void checkClientTrusted(X509Certificate[] chain, String authType) throws
-                    CertificateException
-            {
+                    CertificateException {
             }
 
             @Override
             public void checkServerTrusted(X509Certificate[] chain, String authType) throws
-                    CertificateException
-            {
+                    CertificateException {
             }
 
             @Override
-            public X509Certificate[] getAcceptedIssuers()
-            {
+            public X509Certificate[] getAcceptedIssuers() {
                 X509Certificate[] x509Certificates = new X509Certificate[0];
                 return x509Certificates;
             }
         }};
-        try
-        {
+        try {
             SSLContext sslContext = SSLContext.getInstance("SSL");
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             return sslContext;
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             Log.e(SimpleGlideModule.class.getSimpleName(), "ssl出现异常");
             return null;
         }

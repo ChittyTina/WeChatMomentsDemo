@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="20dp"
-        >
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/mIvSenderAvatar"
@@ -19,8 +18,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:src="@mipmap/ic_launcher"
-            />
+            android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,61 +29,50 @@
                 android:id="@+id/mTvSenderNick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                />
+                android:layout_marginBottom="4dp" />
+
             <TextView
                 android:id="@+id/mTvContent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
-            <!--<com.chitty.wechatmomentsdemo.views.CustomGridView-->
-                <!--android:id="@+id/mCgvImgs"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="40dp"-->
-                <!--android:visibility="gone"-->
-                <!--/>-->
             <com.chitty.wechatmomentsdemo.views.NineGridTestLayout
                 android:id="@+id/mNineGridLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginRight="40dp"
-                app:sapcing="4dp"
+                android:layout_marginTop="8dp"
                 android:visibility="gone"
-                />
+                app:sapcing="4dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                >
+                android:layout_marginTop="10dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10分钟前"
-                    android:textSize="12sp"
-                    android:textColor="@color/grey"
                     android:layout_alignParentLeft="true"
-                    />
+                    android:text="10分钟前"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp" />
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/ic_launcher"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    />
+                    android:src="@mipmap/ic_launcher" />
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/mLlTriangle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
-                android:visibility="gone"
-                >
+                android:orientation="horizontal"
+                android:visibility="gone">
 
             </LinearLayout>
 
@@ -93,21 +80,20 @@
                 android:id="@+id/mClvComments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@color/gray_bg"
                 android:divider="@null"
                 android:dividerHeight="0dp"
-                android:background="@color/gray_bg"
-                android:layout_marginRight="10dp"
-                android:paddingTop="4dp"
-                android:paddingLeft="8dp"
                 android:paddingBottom="10dp"
-                android:visibility="gone"
-                />
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/include_line_h"
+    <include
+        layout="@layout/include_line_h"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 </LinearLayout>

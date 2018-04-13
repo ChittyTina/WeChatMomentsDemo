@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private MomentsAdapter momentsAdapter = null;
     private List<MomentsModel> momentsModels =new ArrayList<>();
     private List<String> jsonList = new ArrayList<>();
-    private LinearLayoutManager layoutManager;
-    private MyServerInterface serverInterface = null;
     private Call<ResponseBody> callProfile = null;
     private String profileJson = "";
     private String momentsJson = "";
@@ -94,9 +92,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 mPtrLayout.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        // TODO
+                        // TODO 模拟刷新
                         mPtrLayout.stopRefresh();
-                        Toast.makeText(MainActivity.this,"刷新完成",Toast.LENGTH_SHORT).show();
                     }
                 },2000);
             }
@@ -162,7 +159,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         if (jsonList != null){
             jsonList.clear();
         }
-        serverInterface = ((MyApplication) MainActivity.this.getApplicationContext()).getMyServerInterface();
+        MyServerInterface serverInterface = ((MyApplication) MainActivity.this.getApplicationContext()).getMyServerInterface();
         Observable observableProfile = serverInterface.getProfile();
         Observable observableMomentsMsg = serverInterface.getMomentsMsg();
 
@@ -176,17 +173,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
                                @Override
                                public void onNext(Response<ResponseBody> responseBodyResponse) {
-                                   LogUtils.i(TAG,"--> merge - onSubscribe - onNext ------------------------------ ");
-
                                    if (responseBodyResponse.isSuccessful() && responseBodyResponse != null) {
-                                       String jsonHead = null;
-
                                        try {
-
                                            String jsons = responseBodyResponse.body().string();
                                            jsonList.add(jsons);
-
-                                           LogUtils.i(TAG,"--> merge - onSubscribe - jsonList = "+jsonList);
 
                                            if (jsonList.size() == 2) {
                                                for (int i = 0; i < jsonList.size(); i++) {
@@ -321,9 +311,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
-
 }

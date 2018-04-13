@@ -14,15 +14,6 @@ import retrofit2.http.Headers;
  */
 public interface MyServerInterface {
 
-//    @Headers("Content-Type: application/json")
-//    @GET(UrlHolder.BASE_URL + "user/jsmith")
-//    Call<ResponseBody> getProfile();
-//
-//
-//    @Headers("Content-Type: application/json")
-//    @GET(UrlHolder.BASE_URL + "user/jsmith/tweets")
-//    Call<ResponseBody> getMomentsMsg();
-
     @Headers("Content-Type: application/json")
     @GET(UrlHolder.BASE_URL + "user/jsmith")
     Observable<Response<ResponseBody>> getProfile();

@@ -245,6 +245,6 @@ public class EmptyLayout extends LinearLayout implements View.OnClickListener {
 		return ((connectivityManager.getActiveNetworkInfo() != null && connectivityManager
 				.getActiveNetworkInfo().getState() == NetworkInfo.State.CONNECTED) || telephonyManager
 				.getNetworkType() == TelephonyManager.NETWORK_TYPE_UMTS);
-	}
 
+	}
 }
